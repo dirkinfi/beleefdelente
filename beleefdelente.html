@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Beleef de Lente Rotatie (fullscreen video)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background-color: black;
+    }
+
+    iframe {
+      position: absolute;
+      top: -200px; /* schuift de pagina omhoog zodat de video bovenaan in beeld komt */
+      left: 0;
+      width: 100%;
+      height: 130%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe id="nestcam" src=""></iframe>
+
+  <script>
+    const urls = [
+      "https://www.vogelbescherming.nl/beleefdelente/steenuil",
+      "https://www.vogelbescherming.nl/beleefdelente/vijver",
+      "https://www.vogelbescherming.nl/beleefdelente/kerkuil",
+      "https://www.vogelbescherming.nl/beleefdelente/slechtvalk",
+      "https://www.vogelbescherming.nl/beleefdelente/koolmees",
+      "https://www.vogelbescherming.nl/beleefdelente/bosuil",
+      "https://www.vogelbescherming.nl/beleefdelente/torenvalk",
+      "https://www.vogelbescherming.nl/beleefdelente/visarend",
+      "https://www.vogelbescherming.nl/beleefdelente/boerenlandvogels",
+      "https://www.vogelbescherming.nl/beleefdelente/zeearend"
+    ];
+
+    let index = 0;
+    const iframe = document.getElementById("nestcam");
+
+    function updateIframe() {
+      iframe.src = urls[index];
+      index = (index + 1) % urls.length;
+    }
+
+    updateIframe(); // eerste keer laden
+    setInterval(updateIframe, 5 * 60 * 1000); // om de 5 minuten
+  </script>
+</body>
+</html>
